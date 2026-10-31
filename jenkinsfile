@@ -1,0 +1,26 @@
+
+pipeline {
+    agent any
+
+    triggers {
+        githubPush()
+    }
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'develop',
+                    url: 'https://github.com/Somnathg3/jenkin.git'
+
+                echo 'Git content pulled successfully!'
+            }
+        }
+
+        stage('Verify Files') {
+            steps {
+                sh 'pwd'
+                sh 'ls -la'
+            }
+        }
+    }
+}
